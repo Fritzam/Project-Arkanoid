@@ -3,13 +3,14 @@ import javax.swing.*;
 class Frame extends JFrame {
 
     Frame() {
+        //Adding icon to the top bar.
+        ImageIcon mainScreenIcon = new ImageIcon("arkanoid.png");
+        this.setIconImage(mainScreenIcon.getImage());
+
+        //Basic frame settings.
         this.setTitle("Arkanoid");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(420, 420);
-        this.setVisible(true);
-
-        ImageIcon image = new ImageIcon("arkanoid2.png");
-        this.setIconImage(image.getImage());
+        this.setSize(512, 512);
     }
 }
