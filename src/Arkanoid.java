@@ -25,10 +25,11 @@ public class Arkanoid {
         mainScreen.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "Start");
         mainScreen.getActionMap().put("Start", gameStart);
 
+        gameScreen.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "Left");
+        gameScreen.getActionMap().put("Left", moveLeft);
 
-
-
-
+        gameScreen.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "Right");
+        gameScreen.getActionMap().put("Left", moveRight);
         //Mapping LeftKey to the platformLabel label.
     }
 
@@ -40,6 +41,20 @@ public class Arkanoid {
             frame.add(gameScreen);
             frame.repaint();
             frame.revalidate();
+        }
+    }
+
+    public class moveLeft extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    public class moveRight extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
         }
     }
 
