@@ -4,24 +4,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class Arkanoid {
-
     Action moveLeft;
     Action moveRight;
     Action gameStart;
 
-
     JFrame frame = new Frame();
     JLabel mainScreen = new MainScreen();
-    JPanel gameScreen = new GameScreen();
-    Arkanoid() {
-        //Initializing gameStart() function.
-        gameStart = new gameStart();
+    GameScreen gameScreen = new GameScreen();
 
-        //Making the frame window(game window) visible, and adding main screen panel to it.
+    Arkanoid() {
+        gameStart = new GameStart();
+
         frame.setVisible(true);
         frame.add(mainScreen);
 
-        //Mapping the SpaceBar key to mainScreen label.
         mainScreen.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "Start");
         mainScreen.getActionMap().put("Start", gameStart);
 
@@ -29,35 +25,36 @@ public class Arkanoid {
         gameScreen.getActionMap().put("Left", moveLeft);
 
         gameScreen.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "Right");
-        gameScreen.getActionMap().put("Left", moveRight);
-        //Mapping LeftKey to the platformLabel label.
+        gameScreen.getActionMap().put("Right", moveRight);
+
+        frame.add(gameScreen);
+        gameScreen.setVisible(false);
     }
 
-    public class gameStart extends AbstractAction {
+    public class GameStart extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //Get content of the frame and remove it all, update, add new label to the frame, update.
             frame.getContentPane().removeAll();
             frame.add(gameScreen);
+            gameScreen.setVisible(true);
             frame.repaint();
             frame.revalidate();
         }
     }
 
-    public class moveLeft extends AbstractAction {
+    public class MoveLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            gameScreen.setPaddleX(gameScreen.getPaddleX() - 10);
+            gameScreen.repaint();
         }
     }
 
-    public class moveRight extends AbstractAction {
+    public class MoveRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            gameScreen.setPaddleX(gameScreen.getPaddleX() + 10);
+            gameScreen.repaint();
         }
     }
-
-
-
 }
