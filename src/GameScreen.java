@@ -1,17 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class GameScreen extends JPanel{
+public class GameScreen extends JPanel {
+    final int PANEL_WIDTH = 500;
+    final int PANEL_HEIGHT = 500;
+    Image userPaddle;
 
     GameScreen() {
-        /*this.setBackground(Color.BLACK);
-        this.setOpaque(true);
+        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        userPaddle = new ImageIcon("Platforma.png").getImage();
 
-        this.setText("To się udało przystojniaku!");
-        this.setFont(new Font("Impact", Font.BOLD, 32));
-        this.setForeground(Color.WHITE);
-        this.setHorizontalTextPosition(JLabel.CENTER);
-        this.setVerticalTextPosition(JLabel.CENTER);*/
+
     }
 
 }

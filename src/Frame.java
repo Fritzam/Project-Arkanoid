@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 class Frame extends JFrame {
 
@@ -12,5 +13,6 @@ class Frame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(512, 512);
+        this.setLayout(new BorderLayout());
     }
 }
