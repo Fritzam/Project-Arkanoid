@@ -30,12 +30,4 @@ public class GameScreen extends JPanel {
         return paddleX;
     }
 
-    //This will set/get the paddleY position.
-    public void setPaddleY(int paddleY) {
-        this.paddleY = paddleY;
-    }
-    public int getPaddleY() {
-        return paddleY;
-    }
-
 }

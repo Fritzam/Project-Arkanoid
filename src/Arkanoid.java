@@ -12,9 +12,9 @@ public class Arkanoid {
 
     JFrame frame = new Frame();
     JLabel mainScreen = new MainScreen();
-    JPanel gameScreen = new GameScreen();
+    GameScreen gameScreen = new GameScreen();
     Arkanoid() {
-        //Initializing gameStart() function.
+        //Initializing gameStart() class.
         gameStart = new gameStart();
 
         //Making the frame window(game window) visible, and adding main screen panel to it.
@@ -25,18 +25,26 @@ public class Arkanoid {
         mainScreen.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "Start");
         mainScreen.getActionMap().put("Start", gameStart);
 
+        //Initializing moveLeft and moveRight functions;
+        moveLeft = new moveLeft();
+        moveRight = new moveRight();
+
         gameScreen.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "Left");
         gameScreen.getActionMap().put("Left", moveLeft);
 
         gameScreen.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "Right");
-        gameScreen.getActionMap().put("Left", moveRight);
+        gameScreen.getActionMap().put("Right", moveRight);
         //Mapping LeftKey to the platformLabel label.
+
+        //Requesting focus to prevent bugs.
+        //frame.requestFocusInWindow();
     }
 
     public class gameStart extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Get content of the frame and remove it all, update, add new label to the frame, update.
+            System.out.println("It works!");
             frame.getContentPane().removeAll();
             frame.add(gameScreen);
             frame.repaint();
@@ -47,14 +55,20 @@ public class Arkanoid {
     public class moveLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            gameScreen.setPaddleX(gameScreen.getPaddleX() - 15);
+            System.out.println("It works!");
+            frame.repaint();
+            frame.revalidate();
         }
     }
 
     public class moveRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            gameScreen.setPaddleX(gameScreen.getPaddleX() + 15);
+            System.out.println("It works!");
+            frame.repaint();
+            frame.revalidate();
         }
     }
 
