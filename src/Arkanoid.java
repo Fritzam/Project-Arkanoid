@@ -8,6 +8,7 @@ public class Arkanoid {
     Action moveLeft;
     Action moveRight;
     Action gameStart;
+    Action ballMovement;
 
 
     JFrame frame = new Frame();
@@ -25,19 +26,22 @@ public class Arkanoid {
         /*mainScreen.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "Start");
         mainScreen.getActionMap().put("Start", gameStart);*/
 
-        //Initializing moveLeft and moveRight functions;
+        //Initializing game control function;
         moveLeft = new moveLeft();
         moveRight = new moveRight();
+        ballMovement = new ballMovement();
 
+        //Adding key mapping.
         gameScreen.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "Left");
         gameScreen.getActionMap().put("Left", moveLeft);
 
         gameScreen.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "Right");
         gameScreen.getActionMap().put("Right", moveRight);
-        //Mapping LeftKey to the platformLabel label.
 
-        //Requesting focus to prevent bugs.
-        //frame.requestFocusInWindow();
+        gameScreen.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "Move");
+        gameScreen.getActionMap().put("Move", ballMovement);
+
+
     }
 
     /*public class gameStart extends AbstractAction {
@@ -50,13 +54,13 @@ public class Arkanoid {
             frame.repaint();
             frame.revalidate();
         }
-    }*/
+    }
+    */
 
     public class moveLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             gameScreen.setPaddleX(gameScreen.getPaddleX() - 15);
-            System.out.println("It works!");
             frame.repaint();
             frame.revalidate();
         }
@@ -66,12 +70,29 @@ public class Arkanoid {
         @Override
         public void actionPerformed(ActionEvent e) {
             gameScreen.setPaddleX(gameScreen.getPaddleX() + 15);
-            System.out.println("It works!");
             frame.repaint();
             frame.revalidate();
         }
     }
 
-
-
+    public class ballMovement extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           if (gameScreen.getBallMovement() < 0) {
+               if (gameScreen.getBallY() + gameScreen.getBallMovement() <= 0) {
+                   gameScreen.setBallMovement(gameScreen.getBallMovement() * -1);
+               } else {
+                   gameScreen.setBallY(gameScreen.getBallY() + gameScreen.getBallMovement());
+               }
+           } else if (gameScreen.getBallMovement() > 0) {
+               if (gameScreen.getBallY() + gameScreen.getBallMovement() >= gameScreen.PANEL_HEIGHT - 50) {
+                   gameScreen.setBallMovement(gameScreen.getBallMovement() * -1);
+               } else {
+                   gameScreen.setBallY(gameScreen.getBallY() + gameScreen.getBallMovement());
+               }
+           }
+           frame.repaint();
+           frame.revalidate();
+        }
+    }
 }
