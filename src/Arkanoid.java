@@ -60,7 +60,7 @@ public class Arkanoid {
     public class moveLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            gameScreen.setPaddleX(gameScreen.getPaddleX() - 15);
+            gameScreen.playerPaddle.setPaddleX(gameScreen.playerPaddle.getPaddleX() - 15);
             frame.repaint();
             frame.revalidate();
         }
@@ -69,7 +69,7 @@ public class Arkanoid {
     public class moveRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            gameScreen.setPaddleX(gameScreen.getPaddleX() + 15);
+            gameScreen.playerPaddle.setPaddleX(gameScreen.playerPaddle.getPaddleX() + 15);
             frame.repaint();
             frame.revalidate();
         }
@@ -78,17 +78,17 @@ public class Arkanoid {
     public class ballMovement extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-           if (gameScreen.getBallMovement() < 0) {
-               if (gameScreen.getBallY() + gameScreen.getBallMovement() <= 0) {
-                   gameScreen.setBallMovement(gameScreen.getBallMovement() * -1);
+           if (gameScreen.ball.getBallMovement() < 0) {
+               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement() <= 0) {
+                   gameScreen.ball.setBallMovement(gameScreen.ball.getBallMovement() * -1);
                } else {
-                   gameScreen.setBallY(gameScreen.getBallY() + gameScreen.getBallMovement());
+                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement());
                }
-           } else if (gameScreen.getBallMovement() > 0) {
-               if (gameScreen.getBallY() + gameScreen.getBallMovement() >= gameScreen.PANEL_HEIGHT - 50) {
-                   gameScreen.setBallMovement(gameScreen.getBallMovement() * -1);
+           } else if (gameScreen.ball.getBallMovement() > 0) {
+               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement() >= gameScreen.PANEL_HEIGHT - 50) {
+                   gameScreen.ball.setBallMovement(gameScreen.ball.getBallMovement() * -1);
                } else {
-                   gameScreen.setBallY(gameScreen.getBallY() + gameScreen.getBallMovement());
+                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement());
                }
            }
            frame.repaint();
