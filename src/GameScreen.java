@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameScreen extends JPanel {
     //Initializing default panel width/height.
@@ -9,13 +10,12 @@ public class GameScreen extends JPanel {
     //Declarations for the game
     Paddle playerPaddle;
     Ball ball;
-    private int initialBoxX = 50;
-    private int initialBoxY = 60;
-    private int rowDistance = 30;
-    Image blueBox;
-    Image redBox;
-    Image yellowBox;
-    Image greenBox;
+
+    //Arrays containing rows of block objects.
+    ArrayList<Block> blueBlocks = new ArrayList<Block>();
+    ArrayList<Block> redBlocks = new ArrayList<Block>();
+    ArrayList<Block> yellowBlocks = new ArrayList<Block>();
+    ArrayList<Block> greenBlocks = new ArrayList<Block>();
 
     GameScreen() {
         //Setting the GameScreen panel size to the values of PANEL_WIDTH, PANEL_HEIGHT;
@@ -25,30 +25,29 @@ public class GameScreen extends JPanel {
         this.playerPaddle = new Paddle();
         this.ball = new Ball();
 
-        //Assigning graphics to the game elements.
-        blueBox = new ImageIcon("SP_Brick_Blue.png").getImage();
-        redBox = new ImageIcon("SP_Brick_Red.png").getImage();
-        yellowBox = new ImageIcon("SP_Brick_Yellow.png").getImage();
-        greenBox = new ImageIcon("SP_Brick_Green.png").getImage();
+        //Instantiating the blocks.
+        for (int i = 1; i <= 8; i++) {
+            blueBlocks.add(new Block(i, 1, "blue"));
+            redBlocks.add(new Block(i, 2, "red"));
+            yellowBlocks.add(new Block(i, 3, "yellow"));
+            greenBlocks.add(new Block(i, 4, "green"));
+        }
     }
 
     //This method will paint the required image on the GameScreen panel.
     public void paint(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
+        //Draw paddle.
         g2D.drawImage(playerPaddle.getPaddleImage(), playerPaddle.getPaddleX(), playerPaddle.getPaddleY(), null);
+        //Draw ball.
         g2D.drawImage(ball.ballImage, ball.getBallX(), ball.getBallY(), null);
-        for (int i = 0; i < 400; i += 50) {
-            g2D.drawImage(blueBox, initialBoxX + i, initialBoxY, null);
-        }
-        for (int i = 0; i < 400; i += 50) {
-            g2D.drawImage(redBox, initialBoxX + i, initialBoxY + rowDistance, null);
+        //Draw blocks.
+        for (int i = 0; i < 8; i++) {
+            g2D.drawImage(blueBlocks.get(i).blockImage, blueBlocks.get(i).blockXPositions[0], blueBlocks.get(i).blockYPositions[0], null);
+            g2D.drawImage(redBlocks.get(i).blockImage, redBlocks.get(i).blockXPositions[0], redBlocks.get(i).blockYPositions[0], null);
+            g2D.drawImage(yellowBlocks.get(i).blockImage, yellowBlocks.get(i).blockXPositions[0], yellowBlocks.get(i).blockYPositions[0], null);
+            g2D.drawImage(greenBlocks.get(i).blockImage, greenBlocks.get(i).blockXPositions[0], greenBlocks.get(i).blockYPositions[0], null);
         }
 
-        for (int i = 0; i < 400; i += 50) {
-            g2D.drawImage(yellowBox, initialBoxX + i, initialBoxY + rowDistance * 2, null);
-        }
-        for (int i = 0; i < 400; i += 50) {
-            g2D.drawImage(greenBox, initialBoxX + i, initialBoxY + rowDistance * 3, null);
-        }
     }
 }

@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -76,19 +75,24 @@ public class Arkanoid {
     }
 
     public class ballMovement extends AbstractAction {
+        Timer timer = new Timer(1, this::actionPerformed);
         @Override
         public void actionPerformed(ActionEvent e) {
-           if (gameScreen.ball.getBallMovement() < 0) {
-               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement() <= 0) {
-                   gameScreen.ball.setBallMovement(gameScreen.ball.getBallMovement() * -1);
+            timer.setRepeats(true);
+            timer.start();
+           if (gameScreen.ball.getBallYMovement() < 0) {
+               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement() <= 0) {
+                   gameScreen.ball.setBallYMovement(gameScreen.ball.getBallYMovement() * -1);
+                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
                } else {
-                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement());
+                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
                }
-           } else if (gameScreen.ball.getBallMovement() > 0) {
-               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement() >= gameScreen.PANEL_HEIGHT - 50) {
-                   gameScreen.ball.setBallMovement(gameScreen.ball.getBallMovement() * -1);
+           } else if (gameScreen.ball.getBallYMovement() > 0) {
+               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement() >= gameScreen.PANEL_HEIGHT - 50) {
+                   gameScreen.ball.setBallYMovement(gameScreen.ball.getBallYMovement() * -1);
+                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
                } else {
-                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallMovement());
+                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
                }
            }
            frame.repaint();
