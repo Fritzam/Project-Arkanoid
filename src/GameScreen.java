@@ -40,7 +40,7 @@ public class GameScreen extends JPanel {
         //Draw paddle.
         g2D.drawImage(playerPaddle.getPaddleImage(), playerPaddle.getPaddleX(), playerPaddle.getPaddleY(), null);
         //Draw ball.
-        g2D.drawImage(ball.ballImage, ball.getBallX(), ball.getBallY(), null);
+        g2D.drawImage(ball.ballImage, ball.getBallXValueAtIndex(0), ball.getBallYValueAtIndex(0), null);
         //Draw blocks.
         for (int i = 0; i < 8; i++) {
             g2D.drawImage(blueBlocks.get(i).blockImage, blueBlocks.get(i).blockXPositions[0], blueBlocks.get(i).blockYPositions[0], null);

@@ -7,12 +7,12 @@ public class Ball {
     private int ballYMovement = -1;
 
     //Initializing ball collision arrays.
-    int[] ballXPositions = new int[25];
-    int[] ballYPositions = new int[25];
+    private int[] ballXPositions = new int[25];
+    private int[] ballYPositions = new int[25];
 
     //Initializing default ball location.
-    private int ballX = 240;
-    private int ballY = 415;
+    final private int ballX = 240;
+    final private int ballY = 415;
     //Declaring ball's image.
     Image ballImage;
 
@@ -27,31 +27,19 @@ public class Ball {
         }
     }
 
-    //This will set/get the BallX position.
-    public void setBallX(int ballX) {
-        this.ballX = ballX;
-    }
-
-    public int getBallX() {
-        return this.ballX;
-    }
-
-    //This will set/get the BallY position.
-    public void setBallY(int ballY) {
-        this.ballY = ballY;
-    }
-
-    public int getBallY() {
-        return this.ballY;
-    }
-
     //This will set/get ballYMovement.
     public void setBallYMovement(int ballYMovement) {
         this.ballYMovement = ballYMovement;
     }
 
+    //This will return the amount of pixels the ball will move.
     public int getBallYMovement() {
         return this.ballYMovement;
+    }
+
+    //This will change ball's vertical direction.
+    public void changeBallYDirection() {
+        this.ballYMovement = this.ballYMovement * -1;
     }
 
     //This will set/get ballXMovement
@@ -70,5 +58,21 @@ public class Ball {
         for (int i = 0; i < ballXPositions.length; i++) {
             ballXPositions[i] = ballXPositions[i] + ballXMovement;
         }
+    }
+
+    //This will return the pixel value at a required index from ballY/XPositions arrays.
+    public int getBallYValueAtIndex(int index) {
+        return this.ballYPositions[index];
+    }
+    public int getBallXValueAtIndex(int index) {
+        return this.ballXPositions[index];
+    }
+
+    //This will return the lengths of respective BallX and BallYPositions arrays.
+    public int getBallXPositionsLength() {
+        return this.ballXPositions.length;
+    }
+    public int getBallYPositionsLength() {
+        return this.ballYPositions.length;
     }
 }

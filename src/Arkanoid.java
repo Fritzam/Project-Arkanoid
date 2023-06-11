@@ -59,18 +59,26 @@ public class Arkanoid {
     public class moveLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            gameScreen.playerPaddle.setPaddleX(gameScreen.playerPaddle.getPaddleX() - 15);
-            frame.repaint();
-            frame.revalidate();
+            if (gameScreen.playerPaddle.getPaddleX() + gameScreen.playerPaddle.getPaddleMovement() > 0) {
+                gameScreen.playerPaddle.setPaddleMovementLeft();
+                gameScreen.playerPaddle.setPaddleX(gameScreen.playerPaddle.getPaddleX() + gameScreen.playerPaddle.getPaddleMovement());
+                gameScreen.playerPaddle.updatePaddlePosition();
+                frame.repaint();
+                frame.revalidate();
+            }
         }
     }
 
     public class moveRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            gameScreen.playerPaddle.setPaddleX(gameScreen.playerPaddle.getPaddleX() + 15);
-            frame.repaint();
-            frame.revalidate();
+            if (gameScreen.playerPaddle.getPaddleX() + gameScreen.playerPaddle.getPaddleMovement() < gameScreen.PANEL_WIDTH - 160) {
+                gameScreen.playerPaddle.setPaddleMovementRight();
+                gameScreen.playerPaddle.setPaddleX(gameScreen.playerPaddle.getPaddleX() + gameScreen.playerPaddle.getPaddleMovement());
+                gameScreen.playerPaddle.updatePaddlePosition();
+                frame.repaint();
+                frame.revalidate();
+            }
         }
     }
 
@@ -80,21 +88,33 @@ public class Arkanoid {
         public void actionPerformed(ActionEvent e) {
             timer.setRepeats(true);
             timer.start();
-           if (gameScreen.ball.getBallYMovement() < 0) {
-               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement() <= 0) {
-                   gameScreen.ball.setBallYMovement(gameScreen.ball.getBallYMovement() * -1);
-                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
-               } else {
-                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
-               }
-           } else if (gameScreen.ball.getBallYMovement() > 0) {
-               if (gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement() >= gameScreen.PANEL_HEIGHT - 50) {
-                   gameScreen.ball.setBallYMovement(gameScreen.ball.getBallYMovement() * -1);
-                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
-               } else {
-                   gameScreen.ball.setBallY(gameScreen.ball.getBallY() + gameScreen.ball.getBallYMovement());
-               }
-           }
+            if (gameScreen.ball.getBallYMovement() < 0) {
+                if (gameScreen.ball.getBallYValueAtIndex(0) + gameScreen.ball.getBallYMovement() > 0) {
+                    gameScreen.ball.updateBall();
+                } else {
+                    gameScreen.ball.changeBallYDirection();
+                    gameScreen.ball.updateBall();
+                }
+            } else if (gameScreen.ball.getBallYMovement() > 0) {
+                if (gameScreen.ball.getBallYValueAtIndex(gameScreen.ball.getBallYPositionsLength() - 1) == gameScreen.playerPaddle.getPaddleY()) {
+                    outerLoop:
+                    for (int i = 0; i < gameScreen.ball.getBallXPositionsLength(); i++) {
+                        for (int j = 0; j < gameScreen.playerPaddle.getPaddleLength(); j++) {
+                            if (gameScreen.ball.getBallXValueAtIndex(i) == gameScreen.playerPaddle.getPaddlePositionAtIndex(j)) {
+                                gameScreen.ball.changeBallYDirection();
+                                gameScreen.ball.updateBall();
+                                break outerLoop;
+                            }
+                        }
+                    }
+                    gameScreen.ball.updateBall();
+                } if (gameScreen.ball.getBallYValueAtIndex(gameScreen.ball.getBallYPositionsLength() - 1) + gameScreen.ball.getBallYMovement() >= gameScreen.PANEL_HEIGHT - 24) {
+                    gameScreen.ball.changeBallYDirection();
+                    gameScreen.ball.updateBall();
+                } else {
+                    gameScreen.ball.updateBall();
+                }
+            }
            frame.repaint();
            frame.revalidate();
         }
