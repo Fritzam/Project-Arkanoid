@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Ball {
     //Initializing variables responsible for ball's movement.
-    private int ballXMovement = 0;
+    private int ballXMovement = 1;
     private int ballYMovement = -1;
 
     //Initializing ball collision arrays.
@@ -41,6 +41,7 @@ public class Ball {
     public void changeBallYDirection() {
         this.ballYMovement = this.ballYMovement * -1;
     }
+    public void changeBallXDirection() { this.ballXMovement = this.ballXMovement * -1; }
 
     //This will set/get ballXMovement
     public void setBallXMovement(int ballXMovement) {
