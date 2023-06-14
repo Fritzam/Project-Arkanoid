@@ -104,7 +104,7 @@ public class Arkanoid {
                         || gameScreen.ball.getBallXValueAtIndex(0) + gameScreen.ball.getBallXMovement() <= 0) {
                     gameScreen.ball.changeBallXDirection();
                 }
-                //If particular color of blocks is still present on the map:
+                //If particular color of blocks is still present on the map: green
                 if (gameScreen.greenBlocks.size() > 0) {
                     //If BallY position is equal to the lowest BlockY position:
                     if (gameScreen.ball.getBallYValueAtIndex(0) == 170
@@ -122,6 +122,84 @@ public class Arkanoid {
                             }
                             if (removed == true) {
                                 gameScreen.greenBlocks.remove(i);
+                            }
+                        }
+                        //If any block was removed, change the directions on the ball's Y axis.
+                        if (changeDirection) {
+                            gameScreen.ball.changeBallYDirection();
+                        }
+                    }
+                }
+                //If yellowBlocks are still present on the map:
+                if (gameScreen.yellowBlocks.size() > 0) {
+                    //If BallY position is equal to the lowest BlockY position:
+                    if (gameScreen.ball.getBallYValueAtIndex(0) == 140
+                            || gameScreen.ball.getBallYValueAtIndex(24) == 110) {
+                        boolean changeDirection = false;
+                        for (int i = 0; i < gameScreen.yellowBlocks.size(); i++) {
+                            boolean removed = false;
+                            for (int j = 0; j < gameScreen.yellowBlocks.get(i).blockXPositions.length - 1; j++) {
+                                for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
+                                    if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.yellowBlocks.get(i).blockXPositions[j]) {
+                                        removed = true;
+                                        changeDirection = true;
+                                    }
+                                }
+                            }
+                            if (removed == true) {
+                                gameScreen.yellowBlocks.remove(i);
+                            }
+                        }
+                        //If any block was removed, change the directions on the ball's Y axis.
+                        if (changeDirection) {
+                            gameScreen.ball.changeBallYDirection();
+                        }
+                    }
+                }
+                //If redBlocks are still present on the map:
+                if (gameScreen.redBlocks.size() > 0) {
+                    //If BallY position is equal to the lowest BlockY position:
+                    if (gameScreen.ball.getBallYValueAtIndex(0) == 105
+                            || gameScreen.ball.getBallYValueAtIndex(24) == 75) {
+                        boolean changeDirection = false;
+                        for (int i = 0; i < gameScreen.redBlocks.size(); i++) {
+                            boolean removed = false;
+                            for (int j = 0; j < gameScreen.redBlocks.get(i).blockXPositions.length - 1; j++) {
+                                for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
+                                    if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.redBlocks.get(i).blockXPositions[j]) {
+                                        removed = true;
+                                        changeDirection = true;
+                                    }
+                                }
+                            }
+                            if (removed == true) {
+                                gameScreen.redBlocks.remove(i);
+                            }
+                        }
+                        //If any block was removed, change the directions on the ball's Y axis.
+                        if (changeDirection) {
+                            gameScreen.ball.changeBallYDirection();
+                        }
+                    }
+                }
+                //If blueBlocks are still present on the map:
+                if (gameScreen.blueBlocks.size() > 0) {
+                    //If BallY position is equal to the lowest BlockY position:
+                    if (gameScreen.ball.getBallYValueAtIndex(0) == 80
+                            || gameScreen.ball.getBallYValueAtIndex(24) == 50) {
+                        boolean changeDirection = false;
+                        for (int i = 0; i < gameScreen.blueBlocks.size(); i++) {
+                            boolean removed = false;
+                            for (int j = 0; j < gameScreen.blueBlocks.get(i).blockXPositions.length - 1; j++) {
+                                for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
+                                    if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.blueBlocks.get(i).blockXPositions[j]) {
+                                        removed = true;
+                                        changeDirection = true;
+                                    }
+                                }
+                            }
+                            if (removed == true) {
+                                gameScreen.blueBlocks.remove(i);
                             }
                         }
                         //If any block was removed, change the directions on the ball's Y axis.
