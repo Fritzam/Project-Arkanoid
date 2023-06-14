@@ -107,13 +107,16 @@ public class Arkanoid {
                 //If particular color of blocks is still present on the map:
                 if (gameScreen.greenBlocks.size() > 0) {
                     //If BallY position is equal to the lowest BlockY position:
-                    if (gameScreen.ball.getBallYValueAtIndex(0) == 170) {
-                        boolean removed = false;
+                    if (gameScreen.ball.getBallYValueAtIndex(0) == 170
+                            || gameScreen.ball.getBallYValueAtIndex(24) == 150) {
+                        boolean changeDirection = false;
                         for (int i = 0; i < gameScreen.greenBlocks.size(); i++) {
+                            boolean removed = false;
                             for (int j = 0; j < gameScreen.greenBlocks.get(i).blockXPositions.length - 1; j++) {
                                 for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
                                     if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.greenBlocks.get(i).blockXPositions[j]) {
                                         removed = true;
+                                        changeDirection = true;
                                     }
                                 }
                             }
@@ -121,40 +124,8 @@ public class Arkanoid {
                                 gameScreen.greenBlocks.remove(i);
                             }
                         }
-                        //For every pixel of a ball:
-                        for (int i = 0; i < gameScreen.ball.getBallXPositionsLength(); i++) {
-                            //For every block still present on the map:
-                            for (int j = 0; j < gameScreen.greenBlocks.size(); j++) {
-                                //For every pixel of every block still present on the map:
-                                for (int k = 0; k < gameScreen.greenBlocks.get(j).blockXPositions.length; k++) {
-                                    //If BallX overlaps with any pixel of the block of this color group  -- remove the block, and set the "removed" flag to true.
-                                    if (gameScreen.ball.getBallXValueAtIndex(i) == gameScreen.greenBlocks.get(j).blockXPositions[k]) {
-                                        gameScreen.greenBlocks.remove(j);
-                                        removed = true;
-                                    }
-                                }
-                            }
-                        }
-                        //For every pixel of the ball on the Y axis:
-                        /*for (int i = 0; i < gameScreen.ball.getBallYPositionsLength(); i++) {
-                            //For every block of the particular color still present on the map:
-                            for (int j = 0; j < gameScreen.greenBlocks.size(); j++) {
-                                //For every pixel of an every block of a particular color:
-                                for (int k = 0; k < gameScreen.greenBlocks.get(j).blockYPositions.length; k++) {
-                                    //If ball's Y overlaps with whichever block's Y -- remove the block, and set the "removed" flag to true.
-                                    if (gameScreen.ball.getBallYValueAtIndex(i) == gameScreen.greenBlocks.get(j).blockYPositions[k]) {
-                                        if (gameScreen.ball.getBallXMovement() == -1) {
-                                            gameScreen.greenBlocks.remove(gameScreen.greenBlocks.size() - 1);
-                                        } else if (gameScreen.ball.getBallXMovement() == 1) {
-                                            gameScreen.greenBlocks.remove(0);
-                                        }
-                                        removed = true;
-                                    }
-                                }
-                            }
-                        }*/
                         //If any block was removed, change the directions on the ball's Y axis.
-                        if (removed == true) {
+                        if (changeDirection) {
                             gameScreen.ball.changeBallYDirection();
                         }
                     }

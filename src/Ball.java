@@ -14,7 +14,7 @@ public class Ball {
 
 
     //initial 240
-    final private int ballX = 420;
+    final private int ballX = 300;
     final private int ballY = 415;
     //Declaring ball's image.
     Image ballImage;
