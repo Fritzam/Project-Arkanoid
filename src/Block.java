@@ -6,6 +6,7 @@ public class Block {
     //Arrays of pixels taken by the blocks.
     int[] blockXPositions = new int[41];
     int[] blockYPositions = new int[21];
+
     Image blockImage;
 
 

@@ -3,15 +3,18 @@ import java.awt.*;
 
 public class Ball {
     //Initializing variables responsible for ball's movement.
-    private int ballXMovement = 1;
-    private int ballYMovement = 1;
+    private int ballXMovement = 0;
+    private int ballYMovement = -1;
 
     //Initializing ball collision arrays.
     private int[] ballXPositions = new int[25];
     private int[] ballYPositions = new int[25];
 
     //Initializing default ball location.
-    final private int ballX = 240;
+
+
+    //initial 240
+    final private int ballX = 420;
     final private int ballY = 415;
     //Declaring ball's image.
     Image ballImage;
