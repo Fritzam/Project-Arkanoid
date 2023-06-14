@@ -4,7 +4,7 @@ import java.awt.*;
 public class Ball {
     //Initializing variables responsible for ball's movement.
     private int ballXMovement = 1;
-    private int ballYMovement = -1;
+    private int ballYMovement = 1;
 
     //Initializing ball collision arrays.
     private int[] ballXPositions = new int[25];

@@ -42,10 +42,16 @@ public class GameScreen extends JPanel {
         //Draw ball.
         g2D.drawImage(ball.ballImage, ball.getBallXValueAtIndex(0), ball.getBallYValueAtIndex(0), null);
         //Draw blocks.
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < blueBlocks.size(); i++) {
             g2D.drawImage(blueBlocks.get(i).blockImage, blueBlocks.get(i).blockXPositions[0], blueBlocks.get(i).blockYPositions[0], null);
+        }
+        for (int i = 0; i < redBlocks.size(); i++) {
             g2D.drawImage(redBlocks.get(i).blockImage, redBlocks.get(i).blockXPositions[0], redBlocks.get(i).blockYPositions[0], null);
+        }
+        for (int i = 0; i < yellowBlocks.size(); i++) {
             g2D.drawImage(yellowBlocks.get(i).blockImage, yellowBlocks.get(i).blockXPositions[0], yellowBlocks.get(i).blockYPositions[0], null);
+        }
+        for (int i = 0; i < greenBlocks.size(); i++) {
             g2D.drawImage(greenBlocks.get(i).blockImage, greenBlocks.get(i).blockXPositions[0], greenBlocks.get(i).blockYPositions[0], null);
         }
 

@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Block {
 
+    //Arrays of pixels taken by the blocks.
     int[] blockXPositions = new int[41];
     int[] blockYPositions = new int[21];
     Image blockImage;
@@ -16,6 +17,8 @@ public class Block {
             case "green" -> blockImage = new ImageIcon("SP_Brick_Green.png").getImage();
             case "yellow" -> blockImage = new ImageIcon("SP_Brick_Yellow.png").getImage();
         }
+
+        //Initial positions
         int initialX = 50;
         int initialY = 60;
         for (int i = 0; i < 41; i++) {
