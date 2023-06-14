@@ -128,6 +128,7 @@ public class Arkanoid {
                         if (changeDirection) {
                             gameScreen.ball.changeBallYDirection();
                         }
+                        //if (gameScreen.ball.getBallXValueAtIndex())
                     }
                 }
                 //If yellowBlocks are still present on the map:
@@ -288,8 +289,7 @@ public class Arkanoid {
                     }
                     gameScreen.ball.updateBall();
                 } if (gameScreen.ball.getBallYValueAtIndex(gameScreen.ball.getBallYPositionsLength() - 1) + gameScreen.ball.getBallYMovement() >= gameScreen.PANEL_HEIGHT - 24) {
-                    gameScreen.ball.changeBallYDirection();
-                    gameScreen.ball.updateBall();
+                    System.exit(0);
                 } else {
                     gameScreen.ball.updateBall();
                 }
