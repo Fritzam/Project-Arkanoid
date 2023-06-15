@@ -109,14 +109,14 @@ public class Arkanoid {
                     //If BallY position is equal to the lowest BlockY position:
                     if (gameScreen.ball.getBallYValueAtIndex(0) == 170
                             || gameScreen.ball.getBallYValueAtIndex(24) == 150) {
-                        boolean changeDirection = false;
+                        boolean changeYDirection = false;
                         for (int i = 0; i < gameScreen.greenBlocks.size(); i++) {
                             boolean removed = false;
                             for (int j = 0; j < gameScreen.greenBlocks.get(i).blockXPositions.length - 1; j++) {
                                 for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
                                     if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.greenBlocks.get(i).blockXPositions[j]) {
                                         removed = true;
-                                        changeDirection = true;
+                                        changeYDirection = true;
                                     }
                                 }
                             }
@@ -125,10 +125,12 @@ public class Arkanoid {
                             }
                         }
                         //If any block was removed, change the directions on the ball's Y axis.
-                        if (changeDirection) {
+                        if (changeYDirection) {
                             gameScreen.ball.changeBallYDirection();
                         }
-                        //if (gameScreen.ball.getBallXValueAtIndex())
+                        if (gameScreen.ball.getBallXMovement() > 0) {
+
+                        }
                     }
                 }
                 //If yellowBlocks are still present on the map:
@@ -136,14 +138,14 @@ public class Arkanoid {
                     //If BallY position is equal to the lowest BlockY position:
                     if (gameScreen.ball.getBallYValueAtIndex(0) == 140
                             || gameScreen.ball.getBallYValueAtIndex(24) == 110) {
-                        boolean changeDirection = false;
+                        boolean changeYDirection = false;
                         for (int i = 0; i < gameScreen.yellowBlocks.size(); i++) {
                             boolean removed = false;
                             for (int j = 0; j < gameScreen.yellowBlocks.get(i).blockXPositions.length - 1; j++) {
                                 for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
                                     if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.yellowBlocks.get(i).blockXPositions[j]) {
                                         removed = true;
-                                        changeDirection = true;
+                                        changeYDirection = true;
                                     }
                                 }
                             }
@@ -152,7 +154,7 @@ public class Arkanoid {
                             }
                         }
                         //If any block was removed, change the directions on the ball's Y axis.
-                        if (changeDirection) {
+                        if (changeYDirection) {
                             gameScreen.ball.changeBallYDirection();
                         }
                     }
@@ -162,14 +164,14 @@ public class Arkanoid {
                     //If BallY position is equal to the lowest BlockY position:
                     if (gameScreen.ball.getBallYValueAtIndex(0) == 105
                             || gameScreen.ball.getBallYValueAtIndex(24) == 75) {
-                        boolean changeDirection = false;
+                        boolean changeYDirection = false;
                         for (int i = 0; i < gameScreen.redBlocks.size(); i++) {
                             boolean removed = false;
                             for (int j = 0; j < gameScreen.redBlocks.get(i).blockXPositions.length - 1; j++) {
                                 for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
                                     if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.redBlocks.get(i).blockXPositions[j]) {
                                         removed = true;
-                                        changeDirection = true;
+                                        changeYDirection = true;
                                     }
                                 }
                             }
@@ -178,7 +180,7 @@ public class Arkanoid {
                             }
                         }
                         //If any block was removed, change the directions on the ball's Y axis.
-                        if (changeDirection) {
+                        if (changeYDirection) {
                             gameScreen.ball.changeBallYDirection();
                         }
                     }
@@ -188,14 +190,14 @@ public class Arkanoid {
                     //If BallY position is equal to the lowest BlockY position:
                     if (gameScreen.ball.getBallYValueAtIndex(0) == 80
                             || gameScreen.ball.getBallYValueAtIndex(24) == 50) {
-                        boolean changeDirection = false;
+                        boolean changeYDirection = false;
                         for (int i = 0; i < gameScreen.blueBlocks.size(); i++) {
                             boolean removed = false;
                             for (int j = 0; j < gameScreen.blueBlocks.get(i).blockXPositions.length - 1; j++) {
                                 for (int k = 0; k < gameScreen.ball.getBallXPositionsLength(); k++) {
                                     if (gameScreen.ball.getBallXValueAtIndex(k) == gameScreen.blueBlocks.get(i).blockXPositions[j]) {
                                         removed = true;
-                                        changeDirection = true;
+                                        changeYDirection = true;
                                     }
                                 }
                             }
@@ -204,7 +206,7 @@ public class Arkanoid {
                             }
                         }
                         //If any block was removed, change the directions on the ball's Y axis.
-                        if (changeDirection) {
+                        if (changeYDirection) {
                             gameScreen.ball.changeBallYDirection();
                         }
                     }
